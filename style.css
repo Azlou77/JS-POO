@@ -1,0 +1,18 @@
+ul.list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+ul.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+ul.grid li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
