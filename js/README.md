@@ -4,4 +4,4 @@ L'utilisateur a d'abord un boutton "Créer un block". Il va contenir un titre et
 un paragraphe par défault. Puis on a la possibilité de :
 - Supprimer un paragraphe, titre
 - Changer la couleur d'un paragraphe, titre.
-- Supprimer le block
+
