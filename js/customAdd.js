@@ -20,6 +20,11 @@ function displayBlock(){
     const btnTitleDelete = document.createElement("button");
     btnTitleDelete.textContent = "Delete title";
     btnTitleDelete.style.backgroundColor = "blue";
+    
+    // Title button change background color
+    const btnTitleChangeBackgroundColor = document.createElement("button");
+    btnTitleChangeBackgroundColor.textContent = "Change title background color";
+   
 
     // Paragraphe
     const paragraphe = document.createElement("p");
@@ -30,11 +35,18 @@ function displayBlock(){
     btnParagrapheDelete.textContent = "Delete paragraphe";
     btnParagrapheDelete.style.backgroundColor = "green";
     
+    
+    // Paragraphe button change background color
+    btnParagrapheChangeBackgroundColor = document.createElement("button");
+    btnParagrapheChangeBackgroundColor.textContent = "Change paragraphe background color";
+
     // Include paragraphe and title in block
     block.appendChild(title);
     block.appendChild(btnTitleDelete);
-    block.appendChild(btnParagrapheDelete);
+    block.appendChild(btnTitleChangeBackgroundColor);
     block.appendChild(paragraphe);
+    block.appendChild(btnParagrapheChangeBackgroundColor);    
+    block.appendChild(btnParagrapheDelete);
     container.appendChild(block);
 
    
@@ -44,6 +56,14 @@ function displayBlock(){
     btnParagrapheDelete.addEventListener("click",function () {
         paragraphe.style.display = "none";
     });
+
+    btnTitleChangeBackgroundColor.addEventListener("click", function(){
+        title.style.backgroundColor = "yellow";
+    })
+
+    btnParagrapheChangeBackgroundColor.addEventListener("click", function (){
+        paragraphe.style.backgroundColor = "orange";
+    })
 
     
      
