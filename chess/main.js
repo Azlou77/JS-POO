@@ -12,7 +12,11 @@ function addCellsInRow() {
   for (let i = 0; i < 5; i++) {
     let newCell = row.insertCell(-1);
     newCell.textContent = "cell 21";
-
+    let button = document.createElement("button");
+    
+  
+  
+  
   /* Place Checkerboard in the 3 row, position 3
      Row ${row.rowIndex} Cell ${i};
      row.rowIndex == 3 + ${i} == 3 via boucle for i = 0 au début
@@ -22,9 +26,10 @@ function addCellsInRow() {
   */
     if (row.rowIndex == 2 && i == 2 ) {
       newCell.textContent = " ";
-      newCell.appendChild(img);
-      
+      button.appendChild(img);
     }
+    newCell.appendChild(button);
+    
   }
 }
 
@@ -32,12 +37,30 @@ function addCellsInRow() {
 function finalCheckboard(){
     for (let j = 0; j < 5; j++) {
     const newRow = addCellsInRow();
+    window.addEventListener("keydown", (event) => { 
+        console.log(event.key);
+
+    });
    
     }
 }
 // Display final checkboard
 finalCheckboard();
 
-
-
+/* How to move image in checkboard
+   Key word: keydown 
+   if keydown == arrow up alors moveup
+   if keydown == arrow bottom alors movebottom
+   if keydown == arrow left alors moveleft
+   if keydown == arrow right alors moveright
+*/
+/* Define current position: if image include in row 3, position 3  then
+*/
+// function defineCurrentPosition(){
+//   finalCheckboard();
+//   if (row.rowIndex == 2 && i == 2 && newCell.appendChild(img)){
+//     newCell.textContent = "This is current position";
+//   }
+// }
+// defineCurrentPosition();
 
