@@ -5,13 +5,15 @@ img.src = "js.png";
 
 const container = document.getElementById("container");
 const table = document.getElementById("table");
+
+
 // Create component 5 cells in  1 row
 function addCellsInRow() {
   let row = table.insertRow(-1);
   for (let i = 0; i < 5; i++) {
     let cell = row.insertCell(-1);
     cell.textContent = "cell 21";
-    let button = document.createElement("button");
+    
   
   /* Place Checkerboard in the 3 row, position 3
      Row ${row.rowIndex} Cell ${i};
@@ -20,31 +22,32 @@ function addCellsInRow() {
      If cell the 3 row, position 3 then
      Img include Cell include Row include Table
   */
+  let button = document.createElement("button");
+  button.addEventListener("keydown", evt => {
+    console.log(evt.key);
+  })
+  
   if (row.rowIndex == 2 && cell.cellIndex == 2) {
     cell.textContent = " ";
+    // Include img in button
     button.appendChild(img);
-    button.addEventListener("keydown", (evt) => {
-      console.log(evt.key);
-    })
-  }
-
+    
+    
+  }   
   // Place button for event keydown
   cell.appendChild(button);
+  
   }
+  
 }
 
-  
 
 
 // Repeat 5 times component addCellsInRow()
 function finalCheckboard(){
     for (let j = 0; j < 5; j++) {
     const newRow = addCellsInRow();
-    window.addEventListener("keydown", (event) => { 
-        console.log(event.key);
-
-    });
-   
+  
     }
 }
 // Display final checkboard
