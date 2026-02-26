@@ -23,16 +23,30 @@ function addCellsInRow() {
      Img include Cell include Row include Table
   */
   let button = document.createElement("button");
+  let currentRow = row.rowIndex;
+  let currentCell =cell.cellIndex;
   button.addEventListener("keydown", evt => {
     console.log(evt.key);
+    if (evt.key == "ArrowUp") {
+      currentRow--
+    }  else if (evt.key == "ArrowDown"){
+      currentRow++
+    } else if (evt.key == "ArrowRight"){
+      currentCell++
+    } else if (evt.key == "ArrowLeft"){
+      currentCell--
+    }
+      
   })
+
   
-  if (row.rowIndex == 2 && cell.cellIndex == 2) {
+  if (currentRow == 2 && currentCell == 2) {
     cell.textContent = " ";
     // Include img in button
     button.appendChild(img);
-    
-    
+    // Put id on current image position
+    button.id = "currentImagePosition";
+
   }   
   // Place button for event keydown
   cell.appendChild(button);
@@ -46,10 +60,16 @@ function addCellsInRow() {
 // Repeat 5 times component addCellsInRow()
 function finalCheckboard(){
     for (let j = 0; j < 5; j++) {
-    const newRow = addCellsInRow();
-  
+      const newRow = addCellsInRow();
+      // move();
     }
 }
+// function move(){
+//   if (condition) {
+    
+//   }
+  
+// }
 // Display final checkboard
 finalCheckboard();
 
