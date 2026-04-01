@@ -1,5 +1,5 @@
 const img = new Image(50, 50);
-img.src = "js.png";
+img.src = "img/js.png";
 
 const table = document.getElementById("table");
 
@@ -22,6 +22,8 @@ function finalCheckboard() {
 
   // Place l'image à la position initiale (row 2, cell 2)
   placeImage(currentRow, currentCell);
+
+  placeImageBonus(randRow, randCell);
 }
 
 // Place l'image dans la cellule ciblée
@@ -31,6 +33,29 @@ function placeImage(row, cell) {
     targetCell.appendChild(img);
   }
 }
+
+// Place l'image bonus dans la cellule  aléatoire
+const imgBonus = new Image(50, 50);
+imgBonus.src = "img/bonus.png";
+
+
+
+// Position actuelle de l'image bonus
+let randRow = getRandomInt(0, 4);
+let randCell = getRandomInt(0, 4);
+
+// Génère un nombre entre 0 et 4
+function getRandomInt(min, max) {
+return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function placeImageBonus(row, cell){
+   const randCell = table.rows[row]?.cells[cell];
+  if (randCell) {
+    randCell.appendChild(imgBonus);
+  }
+}
+
 
 // Écoute les touches clavier UNE SEULE FOIS en dehors des boucles
 window.addEventListener("keydown", (evt) => {
@@ -55,7 +80,9 @@ window.addEventListener("keydown", (evt) => {
     currentRow = newRow;
     currentCell = newCell;
     placeImage(currentRow, currentCell);
+    placeImageBonus(randRow, randCell);
   }
 });
-
+// 
 finalCheckboard();
+
