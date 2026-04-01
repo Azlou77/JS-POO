@@ -1,92 +1,61 @@
-// Create imgage
 const img = new Image(50, 50);
 img.src = "js.png";
 
-
-const container = document.getElementById("container");
 const table = document.getElementById("table");
 
+// Position actuelle de l'image
+let currentRow = 2;
+let currentCell = 2;
 
-// Create component 5 cells in  1 row
 function addCellsInRow() {
   let row = table.insertRow(-1);
+
   for (let i = 0; i < 5; i++) {
     let cell = row.insertCell(-1);
-    cell.textContent = "cell 21";
-    
-  
-  /* Place Checkerboard in the 3 row, position 3
-     Row ${row.rowIndex} Cell ${i};
-     row.rowIndex == 3 + ${i} == 3 via boucle for i = 0 au début
-     Image cell postion 
-     If cell the 3 row, position 3 then
-     Img include Cell include Row include Table
-  */
-  let button = document.createElement("button");
-  let currentRow = row.rowIndex;
-  let currentCell =cell.cellIndex;
-  button.addEventListener("keydown", evt => {
-    console.log(evt.key);
-    if (evt.key == "ArrowUp") {
-      currentRow--
-    }  else if (evt.key == "ArrowDown"){
-      currentRow++
-    } else if (evt.key == "ArrowRight"){
-      currentCell++
-    } else if (evt.key == "ArrowLeft"){
-      currentCell--
-    }
-      
-  })
-
-  
-  if (currentRow == 2 && currentCell == 2) {
-    cell.textContent = " ";
-    // Include img in button
-    button.appendChild(img);
-    // Put id on current image position
-    button.id = "currentImagePosition";
-
-  }   
-  // Place button for event keydown
-  cell.appendChild(button);
-  
   }
-  
 }
 
+function finalCheckboard() {
+  for (let j = 0; j < 5; j++) {
+    addCellsInRow();
+  }
 
-
-// Repeat 5 times component addCellsInRow()
-function finalCheckboard(){
-    for (let j = 0; j < 5; j++) {
-      const newRow = addCellsInRow();
-      // move();
-    }
+  // Place l'image à la position initiale (row 2, cell 2)
+  placeImage(currentRow, currentCell);
 }
-// function move(){
-//   if (condition) {
-    
-//   }
-  
-// }
-// Display final checkboard
+
+// Place l'image dans la cellule ciblée
+function placeImage(row, cell) {
+  const targetCell = table.rows[row]?.cells[cell];
+  if (targetCell) {
+    targetCell.appendChild(img);
+  }
+}
+
+// Écoute les touches clavier UNE SEULE FOIS en dehors des boucles
+window.addEventListener("keydown", (evt) => {
+  let newRow = currentRow;
+  let newCell = currentCell;
+
+  if (evt.key === "ArrowUp") {
+    newRow--;
+  } else if (evt.key === "ArrowDown") {
+    newRow++;
+  } else if (evt.key === "ArrowRight") {
+    newCell++;
+  } else if (evt.key === "ArrowLeft") {
+    newCell--;
+  }
+
+  // Vérifie que la nouvelle position est dans les limites du tableau
+  const maxRows = table.rows.length - 1;
+  const maxCells = table.rows[0].cells.length - 1;
+
+  if (newRow >= 0 && newRow <= maxRows && newCell >= 0 && newCell <= maxCells) {
+    currentRow = newRow;
+    currentCell = newCell;
+    placeImage(currentRow, currentCell);
+  }
+});
+
 finalCheckboard();
-
-/* How to move image in checkboard
-   Key word: keydown 
-   if keydown == arrow up alors moveup
-   if keydown == arrow bottom alors movebottom
-   if keydown == arrow left alors moveleft
-   if keydown == arrow right alors moveright
-*/
-/* Define current position: if image include in row 3, position 3  then
-*/
-// function defineCurrentPosition(){
-//   finalCheckboard();
-//   if (row.rowIndex == 2 && i == 2 && cell.appendChild(img)){
-//     cell.textContent = "This is current position";
-//   }
-// }
-
-
